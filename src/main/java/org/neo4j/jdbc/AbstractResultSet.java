@@ -11,6 +11,7 @@ import java.io.StringReader;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.sql.Array;
 import java.sql.Blob;
 import java.sql.Clob;
@@ -60,8 +61,9 @@ public abstract class AbstractResultSet implements ResultSet
     @Override
     public String toString()
     {
-        return "Columns: " + Arrays.toString( columnNames );
+        return "Columns: " + Charset.forName("UTF-8").encode(Arrays.toString( columnNames )).toString();
     }
+
 
 
     public AbstractResultSet( List<Neo4jColumnMetaData> columns, Neo4jConnection conn )

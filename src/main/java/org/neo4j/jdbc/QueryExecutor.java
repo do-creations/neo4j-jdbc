@@ -20,6 +20,7 @@
 
 package org.neo4j.jdbc;
 
+import java.nio.charset.Charset;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -47,9 +48,9 @@ public interface QueryExecutor
 
         public String toString()
         {
-            return String.format( "(:%s {%s})", label, props );
+            return Charset.forName("UTF-8").encode(String.format( "(:%s {%s})", label, props )).toString();
         }
-
+         
         public Map<String, Object> toMap()
         {
             Map<String, Object> result = new LinkedHashMap<>();

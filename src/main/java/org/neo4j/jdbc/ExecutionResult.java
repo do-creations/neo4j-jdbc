@@ -23,6 +23,7 @@ package org.neo4j.jdbc;
 import org.neo4j.jdbc.util.Closer;
 
 import java.io.Closeable;
+import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -64,9 +65,8 @@ public class ExecutionResult implements Iterable<Object[]>, Closeable
     {
         String result = "Columns:" + columns;
         result += "\n" + this.result;
-        return result;
+        return Charset.forName("UTF-8").encode(result).toString();
     }
-
     public Iterator<Object[]> getResult()
     {
         return result;
